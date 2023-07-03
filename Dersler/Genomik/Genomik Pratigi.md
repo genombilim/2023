@@ -1,13 +1,28 @@
-# Genomik Pratigi:
+# Bioenformatik:
+
+Yeni nesil dizileme (NGS) metotlari o kadar buyuk bir veri uretiyor ki bunu analiz etmek projeler icin onemli bir zorluk teskil ediyor. Arastirmacilar bu buyuklukteki verilerle basa cikabilmek icin oldukca guclu bilgisayarlara ve isletim sistemlerine ihtiyac duyuyorlar. Biyoinformatik bu ihtiyaclari karsilamak amaciyla cikmis bir araclar ve yaklasimlar butunudur. Biyoinformatikci, biyoloji ve bilgisayar bilimi arasinda kopru gorevi gorur. Gunumuzde pek cok universite bu konuda lisans veya yuksek lisans programlari sunsa da biyoinformatik aslen kendi cabamizla da ogrenebilecegimiz bir branstir. 
+
+Bu okulda son yillarda biyoinformatigin en ihtiyac duyuldugu alan olan dizilemedeki kullanimlarini ogrenecegiz. Bu amacla herkes bir bireyin kisa mitogenom dizilerini insan referans genomuna gore hizalayacak, ve mutasyonlari bulacak.
+
+Bu islemleri yapmak icin hal-i hazirda pek cok biyoinformatik araci zaten internette mevcut. Bu araclarin onemli bir kismi terminal dedigimiz komut satirlarindan calistirilabiliyor. Bu da ancak linux/unix bazli isletim sistemlerinde mumkun. Dolayisiyla okulumuz surecinde linux isletim sisteminde calisacagiz. 
+
+# Haydi Baslayalim: Genomik Dosyamizi Olusturalim
 
 Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki noktalari unutmak, tirnak isaretlerindeki duzeltmeler hataya sebep olur. Mutlaka ayni seyi yapitirdiginiza emin olun. 
 
 - Ilk olarak terminali acin. 
 - Once asagidaki kodu kullanarak ssh ile bizim truba hesabimiza baglanin:
  ```
-			ssh 
+			ssh egitim20@193.140.99.61 -p 1212
+			şifre: 
+
+			Levrek1'e yönlendirilmek için;
+
+			ssh egitimXX@levrek1
+			Şifre: sana verilen şifre
+
 ``` 
-- Trubaya baglaninca ilk olarak kendinize ait bir dizin olusturun. Zaten ilk dersete oluturduysaniz da onu kullanin. Icine genomik diye baska bir dizin olusturun. cd dedikten sonra <isminiz> kismini silip kendi isminize actiginiz dizin ismini yazin.
+- Trubaya baglaninca ilk olarak kendinize ait bir dizin olusturun. Zaten ilk derste oluturduysaniz da onu kullanin. Icine genomik diye baska bir dizin olusturun. cd dedikten sonra <isminiz> kismini silip kendi isminize actiginiz dizin ismini yazin.
 
 ```
 			cd <isminiz>
@@ -17,14 +32,25 @@ Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki no
 ```
 - Programlari hesabiniza yuklemek icin asagidaki satiri girin:
 ```
-			 
+			source /truba/home/egitim20/.bashrc	 
 ```
+
+# SRA'den Okumalari Indirelim
+
+SRA yani kisa dizi arsivi ozellikle yeni dizileme teknolojileri kullanilarak uretilmis genelde 1000 bazdan kisa dizilerin depolandigi bir veri tabanidir. SRA arastirmacilara kisa dizilerini kullanima acik olarak depolayabilecekleri bir yer gorevi gormekle kalmayip ayni zamanda aranilan diziye ve diziyle ilgili detayli deneysel bilgiye hizli bir erisime olanak verir.
 - Okumalarinizi indirin fastq-dump'i kullanarak:  
 
 ```
 			fastq-dump -I --split-files SRR1583053
 			cp SRR1583053_1.fastq reads.fastq
-  ```  
+  ```
+
+Bu komut iki tane dosya indirecek: one dogru diziler icin SRR…_1.fastq ve arkaya dogru diziler icin SRR…_2.fastq. Iki tane dosya olmasinin sebebi dizilerin paired-end teknolojisiyle uretilmis olmasi.  Paired-end, Figur 4’de de gordugun gibi bir fragmanin iki ucundan dizilenmesini saglar, bu sayede cok daha yuksek kalitede bir dizi elde edilir. Biz kolaylik acisindan bu derste sadece one dogru uzanan dizilerle calisacagiz. O yuzden SRR…_1.fastq  dosyasinin adini infile_1.fastq olarak degistirip SRR…_2.fastq’yu dosyandan silebilirsin.
+
+![paired-end1](https://github.com/genombilim/2023/assets/37342417/3a672293-bb62-41b7-a361-0877512b8519)
+
+
+
   # Filtreleme
  
  - Okumalarinizin kalitesine bakin. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir.
