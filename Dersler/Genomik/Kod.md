@@ -1,4 +1,4 @@
-# Genomics Pratigi:
+# Genomik Pratigi:
 
 Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki noktalari unutmak, tirnak isaretlerindeki duzeltmeler hataya sebep olur. Mutlaka ayni seyi yapitirdiginiza emin olun. 
 
