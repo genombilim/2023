@@ -1,70 +1,58 @@
-# Genomics practice:
+# Genomics Pratigi:
 
-You will the following commands by one by through copy-pasting. Make sure there is no auto-correction happening with the words, dots, spaces, signs. Whenever you are asked a yes or no question or something like y/n comes up type y and press enter to continue.
+Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki noktalari unutmak, tirnak isaretlerindeki duzeltmeler hataya sebep olur. Mutlaka ayni seyi yapitirdiginiza emin olun. 
 
-- Download the Files folder to your laptop from here: https://github.com/acg-team/Bioinfo4B
-- Initiate Anaconda by running the program
-- Open a terminal: For mac: type terminal in your search and click on it. For windows: open a terminal in Anaconda prompt. 
-- Create a directory called Genomics in your Documents and move everything inside the Files folder you downloaded in there. Use the following code
-```
-			cd Documents
-			mkdir Genomics
-			cp ../Downloads/Files/* Genomics
-			cd Genomics 
-			ls
-```
-- First, set the environment that will have all the packages we need. Thisa will take about 15 minutes.
-```
-			conda env create -f environment.yaml
-			conda activate Env_Bioinfo4B
-```
-- Meanwhile, get your short reads using the sra-toolkit. For this, you'll actually install the program yourself. Go to the website: https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit  Follow the instructions to download and install the toolkit. Open a tab in your terminal, make sure that the environment creation code is still running. 
-
-Table for who works on which reads:
-Daniela: SRR1583053
-
-Daniel:  SRR1583055
-
-Eric:    SRR1583057
-
-Jonathan:SRR1583059
-
-Kevin:   SRR1583061
-
-Mark:    SRR1583063
+- Ilk olarak terminali acin. 
+- Once asagidaki kodu kullanarak ssh ile bizim truba hesabimiza baglanin:
+ ```
+			ssh 
+``` 
+- Trubaya baglaninca ilk olarak kendinize ait bir dizin olusturun. Zaten ilk dersete oluturduysaniz da onu kullanin. Icine genomik diye baska bir dizin olusturun. cd dedikten sonra <isminiz> kismini silip kendi isminize actiginiz dizin ismini yazin.
 
 ```
-			fastq-dump -I --split-files <type here the ID of the person’s genome assigned to you>
-			cp <your SRR ID>_1.fastq reads.fastq
+			cd <isminiz>
+			mkdir Genomik
+			cd Genomik
+
+```
+- Programlari hesabiniza yuklemek icin asagidaki satiri girin:
+```
+			 
+```
+- Okumalarinizi indirin fastq-dump'i kullanarak:  
+
+```
+			fastq-dump -I --split-files SRR1583053
+			cp SRR1583053_1.fastq reads.fastq
   ```  
-  # Filter the short reads from the sequencer
+  # Filtreleme
  
- - Check out the quality of your reads.
+ - Okumalarinizin kalitesine bakin. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir.
 ```
 			fastqc
   ```
   
-- We’ll trim and filter the reads. 
+- Okumalarinizi kesip filtreleyecegiz. 
 ```
 			fastx_trimmer -f 20 -l 240 -i reads.fastq -o reads_trimmed.fastq
 			fastq_quality_filter -q 30 -p 95 -i reads_trimmed.fastq -o reads_filtered.fastq
   ```    
-- Type command -h to explore what each paramater does and take note in your worksheet.
--  Check out the fastx-toolkit content with a pair: http://hannonlab.cshl.edu/fastx_toolkit/commandline.html List two commands that look potentially useful, explore those and share with others. 
+- Komut -h yazarak her bir komutun ne yaptigina bakin.
+-  Simdi de bu websitesine bakin yaninizdaki kisi ile : http://hannonlab.cshl.edu/fastx_toolkit/commandline.html Listeden isinize yarayabilecek iki komut bulup sinifta paylasin. 
  
-- Compare the read sequence before and after trimming and filtering
+- Kesilmis ve filtrelenmis dosyalariniza da fastqc ile bakin. Ne goruyorsunuz?
 ```
 			fastqc
   ```
   
-  # Alignment to the reference genome
-- Download the reference genome for the human mitochondria. For this, go to UCSC genome browser, choose Download, Human, Chromosomes and find the mitochondrial genome sequence. Copy-paste below where you see the word link:
+  # Referans Genomuna Hizalamak
+- Mitokondri icin refereans genomunu indirecegiz. Bunun icin UCSC genome browser'ina gidin, Download kismindan sirasiyla Human, Chromosomes Chromosome M'i bulun.. Link yazan kisma buldugunuz dosyanin linkini kopyalayin:
 ```
-			python -m wget ‘link’
+			wget ‘link’
 			gunzip chrM.fa.gz
 			cp chrM.fa ref.fasta
   ```    
-- Align the reads to the reference:
+- Referansa hizalayalim:
 ```
 			bowtie2-build ref.fasta ref
 			bowtie2 -x ref -q reads_filtered.fastq -S alignment.sam
@@ -74,16 +62,23 @@ Mark:    SRR1583063
 			samtools index alignment_sorted.bam
  ```    
  
-- Visualize the aligned sequences
+- Bakalim:
  ```   
 			samtools tview -d C alignment_sorted.bam ref.fasta
  ```   
-- Visualize the sequence depth. First type the code below, then open a console in Jupyter and follow the steps in Plot Depth.ipynb page in the Scripts folder in the GitHub repo.
+- Derinligi incelemek icin python kullanacagiz. Bunun icin asagidaki python kodunu biliyorsaniz kendiniz python'da bilmiyorsaniz birlikte google colab'de calistiracagiz. Once samtools kullanarak derinlik dosyasini uretin. Gerekiyorsa onu sisteminize kopyalayin.
 ```
 			samtools depth alignment_sorted.bam > depth.csv
+
+			# bu kisim python'da
+			import matplotlib.pyplot as plt
+			import numpy as np
+			import pandas as pd
+			dataset = pd.read_csv('depth.csv', sep='\t', names=["Chr", "Position", "Depth"])
+			dataset
  ```     
-  # Identify the Variants
-- Identify the variants:
+  # Varyantlari bulmak
+- Bulalim:
 ```
 			bcftools mpileup -f ref.fasta alignment_sorted.bam | bcftools call -mv -Ov -o calls.vcf
 			bcftools mpileup -f ref.fasta alignment_sorted.bam | bcftools call -mv -Oz -o calls.vcf.gz
