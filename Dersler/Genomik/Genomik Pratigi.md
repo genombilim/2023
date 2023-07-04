@@ -89,14 +89,20 @@ Neden once kestik, sonra filtreledik?
 			fastqc
   ```
   
-  # Referans Genomuna Hizalamak: Insan Metgenume
+  # Referans Genomuna Hizalamak: Insan Metgenomu
 - Mitokondri icin referans genomunu indirecegiz. Bunun icin UCSC genome browser'ina gidin, Download kismindan sirasiyla Human, Chromosomes Chromosome M'i bulun.. Link yazan kisma buldugunuz dosyanin linkini kopyalayin:
 ```
 			wget ‘link’
 			gunzip chrM.fa.gz
 			cp chrM.fa ref.fasta
   ```    
-Dizileri yerlestirmek eslestirmece oyunu gibi dusunulebilir. Amac kisa dizilerin aynilarini (veya benzerlerini) buyuk dizide yani genomda bulmaktir. Bu islemi kolaylastirmak icin biyoinformatik araclari indexleme denilen bir teknik kullanirlar. Bu islem sayesinde cok hizli bir sekilde kisa diziler genom uzerinde yerlerini bulurlar. Biz yerlestirme icin bowtie2 programini kullanacagiz. 
+Dizileri yerlestirmek eslestirmece oyunu gibi dusunulebilir. Amac kisa dizilerin aynilarini (veya benzerlerini) buyuk dizide yani genomda bulmaktir. 
+![image003](https://github.com/genombilim/2023/assets/37342417/e78cd5cd-4c55-4a0c-ac11-53b8b45e6a6b)
+
+Bu islemi kolaylastirmak icin biyoinformatik araclari indexleme denilen bir teknik kullanirlar. Bu islem sayesinde cok hizli bir sekilde kisa diziler genom uzerinde yerlerini bulurlar. 
+<img width="578" alt="index_kmer" src="https://github.com/genombilim/2023/assets/37342417/aa5fae6f-a6b0-4cc0-a2fc-12feddf0c7f9">
+
+Biz yerlestirme icin bowtie2 programini kullanacagiz. 
 
 - Referansa hizalayalim:
 ```
@@ -107,11 +113,23 @@ Dizileri yerlestirmek eslestirmece oyunu gibi dusunulebilir. Amac kisa dizilerin
 			samtools sort alignment.bam -o alignment_sorted.bam
 			samtools index alignment_sorted.bam
  ```    
- 
+Bu islem 5-10 dakika icinde bir ilk once SAM (Sequence Alignment/Map) dosyasi uretecek. SAM dosyasi insan gozunun okuyabilecegi text formatinda bir dosyadir ve icinde her bir dizi icin bir baslik bir de yerlestirmeyle ilgili detaylarin yer aldigin bir kisim vardir. Dosyanin ilk satirlarini acip icine bir goz atabilirsin. Yandaki link dosya icerigiyle ilgili daha detayli bilgi verir: https://samtools.github.io/hts-specs/SAMv1.pdf
+Yerlestirme bitince ekranda kisa bir rapor belirecek. 
+
+SAM dosyasini analiz etmek icin SAMTools programini kulliyoruz. Her programin kendi indexleme sekli oldugundan referans genomumuzu asagidaki komutu kullanarak tekrar indexlememiz gerek. Bu ref.fasta.fai. isimli bir dosya uretti. 
+Son olarak SAM dosyamizi BAM (Binary Alignment/Map)’e cevirdik.
+
+Bu formatin icerigiyle ilgili daha fazla bilgi icin yandaki linke goz atabilirsin: http://samtools.sourceforge.net/samtools.shtml
+
 - Bakalim:
  ```   
 			samtools tview -d C alignment_sorted.bam ref.fasta
  ```   
+  # Derinlik ve Kapsam
+Peki elimizdeki diziler genomun yuzde kacini kapsiyor? Ve de kapsadigi yerler hakkinda ne kadar kesin konusabiliriz? 
+
+Bu sorularin cevabini vermek icin dizilerimizin kapsam (coverage) ve derinlik, yani bir noktayi kac kere kapsadigi (depth) degerlerini ogrenmemiz gerekir. 
+
 - Derinligi incelemek icin python kullanacagiz. Bunun icin asagidaki python kodunu biliyorsaniz kendiniz python'da bilmiyorsaniz birlikte google colab'de calistiracagiz. Once samtools kullanarak derinlik dosyasini uretin. Gerekiyorsa onu sisteminize kopyalayin.
 ```
 			samtools depth alignment_sorted.bam > depth.csv
@@ -124,27 +142,27 @@ Dizileri yerlestirmek eslestirmece oyunu gibi dusunulebilir. Amac kisa dizilerin
 			dataset
  ```     
   # Varyantlari bulmak
-- Bulalim:
+
+Varyantlari tespit demek referans genom ve elimizdeki dizi arasindaki mutasyonlari bulacağız demek. Bunun icin bcftools’u kullanacagiz. 
+
+Kullandigimiz yerlestirme teknikleri kisa dizileri dogru yerlerine her zaman cok yuksek kesinlikte yerlestiremeyebilir. Ornegin, referans genomda uzun bir tekrar dizisinin icinde yer alan kisa bir dizi pekala tekrar dizisinin baska yerlerine de yerlesebilir. Bu durumda kullandigimiz program uygun yerlerden herhangi birini rastgele secmek durumunda kalir. Bu da yerlestirme guvenilirligini azaltir. Yerlestirme programlari yerlestirme guvenilirliklerini tipki dizileme kaliteleri gibi skorlarlar. Yerlestirme skoru 10 olan bir dizinin yanlis yere yerlestirilmis olma ihtimali yuzde ondur. Dolayisiyla dizileme kalitesine gore degil yerlestirme kalitesine gore de filtreleme yapmamiz gerekebilir. 
+
+- Varyantlari bulalim:
 ```
 			bcftools mpileup -f ref.fasta alignment_sorted.bam | bcftools call -mv -Ov -o calls.vcf
 			bcftools mpileup -f ref.fasta alignment_sorted.bam | bcftools call -mv -Oz -o calls.vcf.gz
-  ```    
-- Generate your first consensus sequence. Name it after yourself by replacing the <name> with your own.
+  ```
+
+ Eger vaktin varsa, vcf dosyani acip yandaki link yardimiyla icerigini anlamaya calisabilirsin: http://samtools.github.io/hts-specs/VCFv4.2.pdf
+ 
+- VCF dosyasini analiz etmek icin varyantlarin indexlenmesi gerekebilir. Bunun icin asagidaki komutu girecegiz:
 ```
 			bcftools index calls.vcf.gz
-			bcftools consensus calls.vcf.gz -f ref.fasta -o consensus.fasta
-			fasta_formatter -i consensus.fasta -w 70 -o consensus_short.fasta
-			cat consensus_short.fasta | sed -e 's/chrM/<name>/g' > <name>.fasta
+		
   ```     
-  # Draw a pylogenetic Tree
-- Create a genomes files including yours and the population one:
+  # Varyantlara ilk Analiz
+  
+- VCF dosyasinin icinde ne var? Bcftools’un çok yararlı bir istatistik komutu bize bunu soyleyebilir: 
 ```
-			cat <your name>.fasta genomes/* > genomes.fasta
+			bcftools stats calls.vcf.gz
  ```     
-- Create a phylogenetic tree
-```
-			clustalo -i genomes.fasta --outfmt=phylip -o genomes.phy
-			dnaml
-			figtree
-```
-To understand how dnaml works, go to its webiste https://evolution.genetics.washington.edu/phylip/doc/dnaml.html read through its assumptions. With a partner, discuss for each assumption how realistic they are and share what you discussed.
