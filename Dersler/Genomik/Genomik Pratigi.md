@@ -37,23 +37,33 @@ Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki no
 
 # SRA'den Okumalari Indirelim
 
-SRA yani kisa dizi arsivi ozellikle yeni dizileme teknolojileri kullanilarak uretilmis genelde 1000 bazdan kisa dizilerin depolandigi bir veri tabanidir. SRA arastirmacilara kisa dizilerini kullanima acik olarak depolayabilecekleri bir yer gorevi gormekle kalmayip ayni zamanda aranilan diziye ve diziyle ilgili detayli deneysel bilgiye hizli bir erisime olanak verir.
-- Okumalarinizi indirin fastq-dump'i kullanarak:  
+SRA yani kisa dizi arsivi ozellikle yeni dizileme teknolojileri kullanilarak uretilmis genelde 1000 bazdan kisa dizilerin depolandigi bir veri tabanidir. SRA arastirmacilara kisa dizilerini kullanima acik olarak depolayabilecekleri bir yer gorevi gormekle kalmayip ayni zamanda aranilan diziye ve diziyle ilgili detayli deneysel bilgiye hizli bir erisime olanak verir. https://www.ncbi.nlm.nih.gov/sra
+
+sra'in kendi araci olan sra toolkit'in icinden fastq-dump konutuyla bir kisa okuma indirelim. https://hpc.nih.gov/apps/sratoolkit.html
+
+- Okumalarinizi fastq-dump'i kullanarak indirin:  
 
 ```
 			fastq-dump -I --split-files SRR1583053
 			cp SRR1583053_1.fastq reads.fastq
   ```
 
-Bu komut iki tane dosya indirecek: one dogru diziler icin SRR…_1.fastq ve arkaya dogru diziler icin SRR…_2.fastq. Iki tane dosya olmasinin sebebi dizilerin paired-end teknolojisiyle uretilmis olmasi.  Paired-end, Figur 4’de de gordugun gibi bir fragmanin iki ucundan dizilenmesini saglar, bu sayede cok daha yuksek kalitede bir dizi elde edilir. Biz kolaylik acisindan bu derste sadece one dogru uzanan dizilerle calisacagiz. O yuzden SRR…_1.fastq  dosyasinin adini infile_1.fastq olarak degistirip SRR…_2.fastq’yu dosyandan silebilirsin.
+Bu komut iki tane dosya indirecek: one dogru diziler icin SRR…_1.fastq ve arkaya dogru diziler icin SRR…_2.fastq. Iki tane dosya olmasinin sebebi dizilerin paired-end teknolojisiyle uretilmis olmasi.  Paired-end, asagida da gordugun gibi bir fragmanin iki ucundan dizilenmesini saglar, bu sayede cok daha yuksek kalitede bir dizi elde edilir. Biz kolaylik acisindan bu derste sadece one dogru uzanan dizilerle calisacagiz.
 
 ![paired-end1](https://github.com/genombilim/2023/assets/37342417/3a672293-bb62-41b7-a361-0877512b8519)
 
-
+Haydi indirdigimiz dosyaya bakalim. Neler dikkatinizi cekiyor? 
+```
+			head reads.fastq
+  ```
+![Screen-Shot-2018-01-07-at-3 40 32-PM-1024x354](https://github.com/genombilim/2023/assets/37342417/1a2bed3d-f76d-442d-b74d-bf32657b3c3b)
 
   # Filtreleme
  
- - Okumalarinizin kalitesine bakin. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir.
+Okumalarinizin kalitesinden bahsettik. Nedir bu kalite? Bir bazin  Phred kalite skoru, Q, o bazin hatali okunma ihtimali P’nin logaritmasidir.
+
+ - 
+ kalitesine bakin. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir. Fastqc okuma kalitelerine bakabilelim diye yapilmis bir program. 
 ```
 			fastqc
   ```
