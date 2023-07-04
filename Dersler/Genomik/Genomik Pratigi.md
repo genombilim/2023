@@ -48,6 +48,8 @@ sra'in kendi araci olan sra toolkit'in icinden fastq-dump konutuyla bir kisa oku
 			cp SRR1583053_1.fastq reads.fastq
   ```
 
+![Steps-in-next-generation-sequencing-A-Extracted-DNA-is-randomly-broken-into-1000-bp](https://github.com/genombilim/2023/assets/37342417/6b4693c3-77b5-46e3-b74d-467425c933f8)
+
 Bu komut iki tane dosya indirecek: one dogru diziler icin SRR…_1.fastq ve arkaya dogru diziler icin SRR…_2.fastq. Iki tane dosya olmasinin sebebi dizilerin paired-end teknolojisiyle uretilmis olmasi.  Paired-end, asagida da gordugun gibi bir fragmanin iki ucundan dizilenmesini saglar, bu sayede cok daha yuksek kalitede bir dizi elde edilir. Biz kolaylik acisindan bu derste sadece one dogru uzanan dizilerle calisacagiz.
 
 ![paired-end1](https://github.com/genombilim/2023/assets/37342417/3a672293-bb62-41b7-a361-0877512b8519)
@@ -61,13 +63,17 @@ Haydi indirdigimiz dosyaya bakalim. Neler dikkatinizi cekiyor?
   # Filtreleme
  
 Okumalarinizin kalitesinden bahsettik. Nedir bu kalite? Bir bazin  Phred kalite skoru, Q, o bazin hatali okunma ihtimali P’nin logaritmasidir.
+![Screen-Shot-2018-01-07-at-1 36 09-PM-1024x713](https://github.com/genombilim/2023/assets/37342417/05a343ee-eed5-472c-86c0-08c1afa838ae)
 
- - 
- kalitesine bakin. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir. Fastqc okuma kalitelerine bakabilelim diye yapilmis bir program. 
+
+ - Haydi okumalarinizin kalitesine bakin. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir. Fastqc okuma kalitelerine bakabilelim diye yapilmis bir program. https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
 ```
 			fastqc
   ```
-  
+
+Neler bakabilirsiniz ve sizce niye bunlara bakmak isteriz?
+
 - Okumalarinizi kesip filtreleyecegiz. 
 ```
 			fastx_trimmer -f 20 -l 240 -i reads.fastq -o reads_trimmed.fastq
@@ -77,17 +83,21 @@ Okumalarinizin kalitesinden bahsettik. Nedir bu kalite? Bir bazin  Phred kalite 
 -  Simdi de bu websitesine bakin yaninizdaki kisi ile : http://hannonlab.cshl.edu/fastx_toolkit/commandline.html Listeden isinize yarayabilecek iki komut bulup sinifta paylasin. 
  
 - Kesilmis ve filtrelenmis dosyalariniza da fastqc ile bakin. Ne goruyorsunuz?
+Neden bu adimlara gerek var?
+Neden once kestik, sonra filtreledik?
 ```
 			fastqc
   ```
   
-  # Referans Genomuna Hizalamak
-- Mitokondri icin refereans genomunu indirecegiz. Bunun icin UCSC genome browser'ina gidin, Download kismindan sirasiyla Human, Chromosomes Chromosome M'i bulun.. Link yazan kisma buldugunuz dosyanin linkini kopyalayin:
+  # Referans Genomuna Hizalamak: Insan Metgenume
+- Mitokondri icin referans genomunu indirecegiz. Bunun icin UCSC genome browser'ina gidin, Download kismindan sirasiyla Human, Chromosomes Chromosome M'i bulun.. Link yazan kisma buldugunuz dosyanin linkini kopyalayin:
 ```
 			wget ‘link’
 			gunzip chrM.fa.gz
 			cp chrM.fa ref.fasta
   ```    
+Dizileri yerlestirmek eslestirmece oyunu gibi dusunulebilir. Amac kisa dizilerin aynilarini (veya benzerlerini) buyuk dizide yani genomda bulmaktir. Bu islemi kolaylastirmak icin biyoinformatik araclari indexleme denilen bir teknik kullanirlar. Bu islem sayesinde cok hizli bir sekilde kisa diziler genom uzerinde yerlerini bulurlar. Biz yerlestirme icin bowtie2 programini kullanacagiz. 
+
 - Referansa hizalayalim:
 ```
 			bowtie2-build ref.fasta ref
