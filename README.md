@@ -25,9 +25,11 @@ Yurt Amiri Telefon: (212) 359 78 82
 Danışma Telefon: (212) 359 78 83 
 Adres: Boğaziçi Üniversitesi 3.Kilyos Yurdu Gümüşdere Mahallesi,Sarıtepe Kampüsü (Boğaziçi Kampüs Yolu) Küme Evler No: 2/1 A Sarıyer / İstanbul
 
-**Yemek:** Kahvaltı, öğle ve akşam yemekleri kafeteryada olacak. Su, molalardaki kahve/cay gibi ihtiyaclariniz icin ayarlamalar uzerine calisiyoruz. Pazar aksami yemek saglayabiliyorsak size yazacagiz.
+**Yemek:** Kahvaltı, öğle ve akşam yemekleri kafeteryada olacak. Su, molalardaki kahve/cay gibi ihtiyaclariniz icin ayarlamalar uzerine calisiyoruz. Pazar aksami yemek olacak.
 
 **program**
+
+
 <img width="561" alt="Screenshot 2023-07-05 at 8 59 02 AM" src="https://github.com/genombilim/2023/assets/37342417/6729742b-9558-4474-a995-f1edb3cfb1eb">
 
 
