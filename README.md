@@ -2,7 +2,7 @@
 
 Github sayfamiza hosgeldiniz. Okulla ilgili tum bilgi ve dosyalari buraya yukleyecegiz.
 
-**Okul Adresi:** Boğaziçi Üniversitesi 3.Kilyos Yurdu Gümüşdere Mahallesi,Sarıtepe Kampüsü (Boğaziçi Kampüs Yolu) Küme Evler No: 2/1 A Sarıyer / İstanbul Siniflar Kilyos eski Yadyok Binası’nda bir derslikte olacak. Oda numarasini size belli olunca yazacagiz.
+**Okul Adresi:** Boğaziçi Üniversitesi 3.Kilyos Yurdu Gümüşdere Mahallesi,Sarıtepe Kampüsü (Boğaziçi Kampüs Yolu) Küme Evler No: 2/1 A Sarıyer / İstanbul Siniflar Eski YADYOK Binası, bilgisayar laboratuvarında olacaktir. 
 
 **Ulasim:** 
 Tubitak ulasiminizi sehir uzakliklarina bictikleri fiks bir ucret uzerinden karsilayacak. Lutfen faturalarinizi saklayin.
