@@ -7,7 +7,12 @@ Github sayfamiza hosgeldiniz. Okulla ilgili tum bilgi ve dosyalari buraya yukley
 **Ulasim:** 
 Tubitak ulasiminizi sehir uzakliklarina bictikleri fiks bir ucret uzerinden karsilayacak. Lutfen faturalarinizi saklayin.
 
-Sehirden okula ulasim icin servis ayarlamak uzerine calisiyoruz su anda. Olursa sehirden saat 5'te kalkacak bir servis olacak. Cuma aksami 6'da da geri donus. Bilgi formunu buradan doldurun lutfen: https://forms.gle/Zpi69U2gF7imsciC6
+Sehirden okula ulasim icin servis ayarladik. Olursa sehirden saat 5'te kalkacak bir servis olacak. Pazar aksam ustu 5'te Bogazici Universitesi Guney Kampusu meydandan servislerimiz kalkacak. Gidis icin isminizi yazdirdiginizdan farkli bir planiniz varsa (iptal/ekleme) bize email atin. Metroyla ulasim M2 ile Levent'te M6 hattina degistirip Bogazici Universitesi'nde inerseniz kolay diye dusunuyorum. 10 dk yurume varmis arada. Burada Sogutlucesme'den de gelis var ornegin:
+https://www.google.com/maps/dir/Zühtüpaşa,+Söğütlüçeşme+YHT+Yüksek+Hızlı+Tren+İstasyonu,+Park+İçi+Yolu,+Kadıköy%2Fİstanbul/Bebek,+Boğaziçi+Üniversitesi+%7C+Güney+Kampüs,+BÜ+Güney+Kampüsü,+34342+Beşiktaş%2Fİstanbul/@41.0379839,28.9241434,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x14cab9d39934e787:0x5467bc3529d2ed35!2m2!1d29.0378781!2d40.9906753!1m5!1m1!1s0x14cac97ce659b6d5:0x5c986171da17f826!2m2!1d29.0519114!2d41.0835911!3e3?entry=ttu
+
+
+
+Cuma aksami 6'da da geri donus. Bilgi formunu buradan doldurun lutfen: https://forms.gle/Zpi69U2gF7imsciC6
 
 Kendi sartlarinizla sehirden geliyorsaniz Sarıtepe Kampüsü’ne ulaşmak için Söğütlüçeşme Marmaray/Hızlı Tren’den şu şekilde ilerleyebilirsiniz:
 
