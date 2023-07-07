@@ -15,6 +15,8 @@ Kendi sartlarinizla sehirden geliyorsaniz Sarıtepe Kampüsü’ne ulaşmak içi
 2) Yenikapı’da M2 Yenikapı-Hacıosman metrosuna binip, son durak olan Hacısman’da iniş.
 3) Hacıosman’da Boğaziçi Üniversitesi Sarıtepe/Kilyos Kampüsü’ne giden Sarıtepe hattına biniş (saatler şu linkte: https://iett.istanbul/RouteDetail?hkod=59HS&routename=HACIOSMAN%20METRO%20-%20SARITEPE%20KAMP%C3%9CS%C3%9C)
 
+Sabiha Gökçen’den gelenler HAVAŞ veya havalimanından belediye otobüsü ile Taksim’e ulaşırlarsa, oradan M2 hattına geçip, Hacıosman’da inip, yine sonrasında Saritepe Kampüsü otobüsüyle (59HS hattı) gelebilirler.
+
 **Konaklama:** 
 9 temmuz giris-14 temmuz cuma aksami cikis. Eger bir gece daha kalmak istiyorsaniz bize hemen yazin ayarlayalim. Geceligi 200 tl.
 Boğaziçi Üniversitesi Sarıtepe Kampüsü 3. Kilyos Yurdu:
