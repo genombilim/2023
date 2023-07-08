@@ -173,19 +173,19 @@ cp kendisinden sonra yazilan tum dosyalari en sondaki dizinin icine kopyalar. No
 
 ## Dosyalari bir dizinden digerine tasimak:
 ```
-			mkdir ../data
+			mkdir data
 ```
 			
 ## Dosyalari data dizinine tasiyalim:
 ```
-			mv tb1-protein.fasta ../data/
-   			mv tga1-protein.fasta ../data/
-   			ls ../data/
+			mv tb1-protein.fasta data
+   			mv tga1-protein.fasta data
+   			ls
 ```
 			
 ## Dosyalari tek bir dosyada toplamak:
 ```
-			cd ../data/
+			cd data
   			cat *protein.fasta > proteins.fasta
 ```
 			
@@ -204,7 +204,7 @@ Mesela sadece protein ismini görmek istiyoruz nasıl yapabiliriz?
 grep komutu dosyanin icinde belli bir karakteri aratmanizi saglar. Tum satiri verir.
 Ya da
 ```
-			grep -v "^>" tb1-protein.fasta
+			grep -v "^>" proteins.fasta
 ```
 			
 grep man ile bakabiliriz: 
