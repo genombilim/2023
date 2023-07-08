@@ -11,7 +11,7 @@ Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki no
 Şifrenizi yazarken ekranda hiç bir imleç belirmez. Endişe etmeyin.
  ```
 			ssh egitimXX@levrek1.ulakbim.gov.tr
-			şifre: sana verilen şifre
+			şifre: adiniza verilen şifre
 
 ``` 
 - Trubaya baglaninca ilk olarak kendinize ait bir dizin olusturun. Kendi ilk isminiz kucuk harflerle ve bitisik olarak.
@@ -43,7 +43,7 @@ Cevap: kisaltma ~ zaman
 
 Nasil bir altdizine gidecegiz?
 ```
-			cd tugce/
+			cd <isminiz>
 ```
 			
 Bir seyi ekrana yazdırmak icin:
@@ -71,7 +71,7 @@ dersin sonunda bunu tekrar komutlayip yeni dosyaya kaydedebilirsiniz.
 Yeni bir dizin olustur:
 ```
 			mkdir bash_dersi
-   ls
+			ls
 ```
 			
 Tek adimda istenilen altdizine gitmek:
@@ -109,7 +109,7 @@ koseli parantez icinde verilen secenekler opsiyoneldir. Komut o secenekler olmad
 
 ```
 			cd <isminiz>/bash_dersi/
-   echo bu benim ilk dosyam > ilk_dosyam.txt
+   			echo bu benim ilk dosyam > ilk_dosyam.txt
 ```
 			
 > isareti oncesindeki icerigi sonrasindaki dosyaya kaydeder. - uzerine yaziyor, dikkat!
@@ -136,8 +136,8 @@ Dosya ismini girerken mutlaka TAB kullanın! TAB'in zaman kazandirmasi disinda e
 ```
 Dosyanin icine girdiniz. I yazip icine bu benim ikinci dosyam yazin. Kaydedip cikmak icin once escape'e basin, sonra iki nokta ust uste yazip x yazin (:x). Kaydedip cikmis olacaksiniz.
 ```
-   ls
-   cat ikinci_dosyam.txt
+   			ls
+			cat ikinci_dosyam.txt
 ```
 			
 dosya isimlerine txt eklersek word’de acabiliriz. Sart degil, genelde ihtiyac yok cunku buna. 
@@ -151,8 +151,8 @@ tum silmek istediklerimizi rm’un arkasina yazip tek tusla silebiliriz.
 Dizin silmek:
 ```
 			mkdir test_dizini
-   ls
-   rm -r test_dizini
+   			ls
+   			rm -r test_dizini
 ```
 			
 # Buyuk text datalari ile calisma yontemleri (sekans datasini buyuk bir text datasi olarak dusunebilirsiniz):
@@ -165,8 +165,8 @@ Once buyuk_veri diye bir dizinin olusturun ve o dizine gecin. Simdi o dizinimizi
 Dosyalari kopyalamak:
 ```
 			cp ../../../tb1-protein.fasta .
-   cp ../../../tga1-protein.fasta .
-   ls
+   			cp ../../../tga1-protein.fasta .
+   			ls
 ```
 			
 cp kendisinden sonra yazilan tum dosyalari en sondaki dizinin icine kopyalar. Nokta isareti icinde bulundugumuz dizini isaret eder.
@@ -179,14 +179,14 @@ Dosyalari bir dizinden digerine tasimak:
 Dosyalari data dizinine tasiyalim:
 ```
 			mv tb1-protein.fasta ../data/
-   mv tga1-protein.fasta ../data/
-   ls ../data/
+   			mv tga1-protein.fasta ../data/
+   			ls ../data/
 ```
 			
 Dosyalari tek bir dosyada toplamak:
 ```
 			cd ../data/
-  cat *protein.fasta > proteins.fasta
+  			cat *protein.fasta > proteins.fasta
 ```
 			
 yildiz isareti joker gibidir, herhangi bir harf ve harf dizisi anlamina gelir.
@@ -195,51 +195,64 @@ kaydetti mi kontrol ediyoruz:
 			cat proteins.fasta
 ```
 			
-# Buyuk text datalari ile calisma yontemleri (sekans datasini buyuk bir text datasi olarak dusunebilirsiniz):
-
-Veri cok buyuk oldugundan text icin kullandiginiz grafik arayuzlu programlarin veriyi 'memory' uzerinde tutmasi cok masrafli olur. Gb buyuklugunde iki FASTA dosyasini birlestirmek isterseniz, birini acip kopyalayip-yapistirirken cok fazla memory'yi isgal etmis olursunuz, ayrica mouse ile bu islemi yaparken bir kismini silebilir, tumunu secemeyebilirsiniz vb. Sonunda yapacaginiz analiz & bulacaginiz sonuclar hatali olacaktir. Shell bu durumlarda hem memory'de yer tutmadan hem de sizden kaynaklanan hataya yol acmadan cozmenizi saglar.
-
 Dosya icinden hizlica bilgi almak:
 Mesela sadece protein ismini görmek istiyoruz nasıl yapabiliriz?
-$ grep protein tb1-protein.fasta
-#grep komutu dosyanin icinde belli bir karakteri aratmanizi saglar. Tum satiri verir.
+```
+			grep protein tb1-protein.fasta
+```
+			
+grep komutu dosyanin icinde belli bir karakteri aratmanizi saglar. Tum satiri verir.
 Ya da
-$grep -v "^>" tb1-protein.fasta
-#grep man ile bakabiliriz: 
-# Ilk is FASTA dosyasinda 'header'i iceren satirlari islem disi birakmak (-v).
-# " " isareti kullanarak ilgili kalibi gerp'e tanittik.
+```
+			grep -v "^>" tb1-protein.fasta
+```
+			
+grep man ile bakabiliriz: 
+Ilk is FASTA dosyasinda 'header'i iceren satirlari islem disi birakmak (-v).
+" " isareti kullanarak ilgili kalibi grep'e tanittik.
  '^'isareti aranan pattern'i sadece satir basi ile sinirliyor.
 
 Not: grep'in cok hizli olmasinin nedenlerinden biri, bir kalibi buldugunda, o satirin gerisini
 arastirmayi birakmasi! -o secenegini inceleyin:
-grep -o CRGEG proteins.fasta
-
+```
+			grep -o CRGEG proteins.fasta
+```
+			
 Ya da mesela DNA fastası acalim.
-$ cp ../../tb1.fasta .
-$ cat tb1.fasta
-
+```
+			cp ../../tb1.fasta .
+```
+			
+```
+			cat tb1.fasta
+```
+			
 Icine kısaca bakalım:
 
-$ head tb1.fasta
-$ cat tb1.fasta
-$ tail tb1.fasta
-$ wc tb1.fasta
-$ wc -l tb1.fasta
-
+```
+			head tb1.fasta
+			cat tb1.fasta
+			tail tb1.fasta
+			wc tb1.fasta
+			wc -l tb1.fasta
+```
+			
 COK ONEMLI UYARI: wc gibi islemlerde data formatinin duzgun oldugu sanisi uzerinden hareket ediyoruz.
 Eger .txt dosyasi 3 adet bos satir iceriyorsa (whitespace) wc veriye dair 3 fazla satir bilgisi verir!
  
 Bu dosyanın icinde ATCG olmayan bir nükleotitler var mi?
 
-$ grep -v A tb1.fasta
-$ grep -v ATCG tb1.fasta
-$ grep -v "^>" tb1.fasta
-
-Pipeline'a giris:
+```
+			grep -v A tb1.fasta
+			grep -v ATCG tb1.fasta
+			grep -v "^>" tb1.fasta
+```
+			
+# Pipeline'a giris:
 
 Pipeline olusturmak Linux-bash'in en guclu ozelliklerinden birisidir. Ornegin 3 farkli program ile bir sekans datasini analiz edeceksiniz. Diyelim ki ilk adim alignment, ikinci adim filogenetik agac olusturmak, ucuncu adim ise atasal DNA dizisi olusturmak. Tek tek adimlari sira ile uygulayabilirsiniz. Veya bir pipeline olusturarak tek bir komut ile islemi hizla gerceklestirebilirsiniz! Ayrica, ornegin birinci ve ikinci islemlerin sonunda olusan ciktiyi bilgisayariniza kaydetmeden pipeline sadece son islemin ciktisini verir. Ozetle pipeline, ilk islemin ciktisini (output) '|' isaretinden sonra gelen ikinci islemde kullanilan araca girdi (input) olarak verir.
 
-SORT ile veri dosyasi icerigini duzenlemek / istenilen sutuna gore siralamak:
+## SORT ile veri dosyasi icerigini duzenlemek / istenilen sutuna gore siralamak:
 $ cd ../../
 $ ls
 $ ls | sort
