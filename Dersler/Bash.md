@@ -3,9 +3,11 @@
 Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki noktalari unutmak, tirnak isaretlerindeki duzeltmeler hataya sebep olur. Mutlaka ayni seyi yapitirdiginiza emin olun. 
 
 - Ilk olarak terminali acin. 
-- TRUBA sunucularına bağlanmak için once Ana dizindeki truba hesaplar excel dosyasindan kendi kullanixi isminizi ve sifrenizi not alin.
+- TRUBA sunucularına bağlanmak için once Ana dizindeki truba hesaplar excel dosyasindan kendi kullanici isminizi ve sifrenizi not alin.
+  
 • Kullanıcı İsmi: egitimXX
 • Şifre: 
+
 - Sonra da aşağıdaki kodu terminal ekranınıza yazmanız gerekecek. Eğer, bu sunucuda ilk defa bağlanıyorsanız bir uyarı alabilirisiniz. Yes diye cevap vermeniz gerekmektedir.
 
 Şifrenizi yazarken ekranda hiç bir imleç belirmez. Endişe etmeyin.
