@@ -1,0 +1,235 @@
+# Bash'e giris
+
+Home directory (konum/altdizin): bash'i baslattiginizda bulundugunuz ilk konum.
+
+bulundugunuz konumu/altdizini gorunteleyin:
+$pwd
+
+Nasil bir ust dizine gidecegiz?
+$ cd ../
+
+Listele komutu:
+$ ls
+
+#Soru: komut neden acikca 'list' olarak kullanilmiyor da 'ls' olarak kullaniliyor?
+#Cevap: kisaltma ~ zaman
+
+$ ls -l
+# listeleme 'output'unun tek satir halinde gosterilmesini saglar
+
+Nasil bir altdizine gidecegiz?
+$ cd tugce/
+
+Bir seyi ekrana yazdırmak icin:
+$ echo merhaba
+
+Ekrani temizlemek icin:
+
+$ clear
+#ekran komutlarini temizler
+
+Yukari asagi gitmek:
+
+Komut satirlarinda eski yazdiklarini gormek icin, bazen eski komutlari tekrar calistirmak icin vs 'yukari & 'asagi' oklari kullanabilirsiniz.
+
+Ctrl + a #basa git
+Ctrl + e #sona git ya da asagi ok, yukari ok
+
+Cok onemli bir ozellik - komut tarihcesi (history):
+$ history
+#dersin sonunda bunu tekrar komutlayip yeni dosyaya kaydedebilirsiniz.
+
+Yeni bir dizin olustur:
+$ mkdir tugce_yeni_dizin
+$ ls
+
+Tek adimda istenilen altdizine gitmek:
+#once bir geri cikalim:
+$cd ../
+#sonra olusturdugumuz dosyanin icine girelim:
+
+$ cd /tugce/tugce_yeni_dizin/
+# '/' altdizin oldugunu belirtiyor & farkli altdizinleri hiyerarsiye gore diziyor – ust konumdan alt konuma dogru.
+
+#Bir dizinden/konumdan 'home-directory'ye gecmenin kisa yolu:
+$ cd ~
+
+Peki ilgili arac icin bulunan seceneklere dair nereden bilgi alabiliriz?
+Man sayfasi ilgili araci calistiracak komutlar uzerine bilgi verir:
+
+$ man ls
+# koseli parantez icinde verilen secenekler opsiyoneldir. Komut o secenekler olmadan da caisir. Fakat secenekler size cok faydali calismanizda yardimci olur. Secenekleri gozden gecirmeniz (man ile) cok faydali.
+
+#'man' sayfasindan ‘q’ ile cikabiliriz.
+
+Yeni Dosya uretmek 1:
+
+$ echo bu benim ilk dosyam > tugce_ilk_dosyam.txt
+# > isareti oncesindeki icerigi sonrasindaki dosyaya kaydeder. - uzerine yaziyor, dikkat!
+# '>>' yine yonlendiriyor fakat eger o dosya ismi veri iceriyorsa sonuna ekler.
+#isminizi tasiyan dizinin icinde ilk_dosyam adinda bir dosya olusturduk. Icine de bu benim ilk dosyam yazdik.
+#Dosya isimlendirmelerinizin mantikli, anlasilabilir, birbirleri ile iliskili olmasi cok ama cok onemli!
+#dosya isimlendirmelerine bosluk vermekten ve /, ‘, “, >, .  isartetlini kullanmaktan kacinalim. Bunlar komut satirinin kullandigi harfler oldugu icin dosya/dizin ismina koyarsak karisirlar.
+
+Dosyanin icine bakmak:
+$cat tugce_ilk_dosyam.txt
+#cat komutu sonrasinda yazili olan dosyanin (dosyalarin) icergini gosterir. Bir kac dosya icerigini tek bir dosya kaydetmek icin de kullanabilecegi icin ismi concatanate’ten gelir. 
+# Dosya ismini girerken mutlaka TAB kullanın! TAB'in zaman kazandirmasi disinda en onemli ozelligi hatali isimlendirmeyi onler, yanlis dosya uzer
+
+Yeni Dosya uretmek 2:
+$ vim ikinci_dosyam.txt
+$ ls
+$ cat ikinci_dosyam.txt
+# dosya isimlerine txt eklersek word’de acabiliriz. Sart degil, genelde ihtiyac yok cunku buna. Ay
+#I harfine basarak icine bir seyler yazabilir, once escape sonra ayni anda :x tuslarina basak cikabiliriz.
+
+Dosya silmek:
+$ rm ikinci_dosyam.txt tugce_birinci_dosyam
+$ ls
+# tum silmek istediklerimizi rm’un arkasina yazip tek tusla silebiliriz. 
+
+Dizin silmek:
+$ mkdir test_dizini
+$ ls
+$ rm -r test_dizini
+
+Dosyalari tasimak, yeniden adlandirmak:
+
+bash_dersi diye bir dizinin olusturun ve o dizine gecin.
+
+Dosyalari kopyalamak:
+$ cp ../../tb1-protein.fasta .
+$ cp ../../tga1-protein.fasta .
+$ ls
+#cp kendisinden sonra yazilan tum dosyalari en sondaki dizinin icine kopyalar. Nokta isareti icinde bulundugumuz dizini isaret eder.
+
+Dosyalari bir dizinden digerine tasimak:
+$mkdir ../data
+
+#Dosyalari data dizinine tasiyalim:
+$ mv tb1-protein.fasta ../data/
+$ mv tga1-protein.fasta ../data/
+$ ls ../data/
+
+Dosyalari tek bir dosyada toplamak:
+$ cd ../data/
+$ cat *protein.fasta > proteins.fasta
+# yildiz isareti joker gibidir, herhangi bir harf ve harf dizisi anlamina gelir.
+# kaydetti mi kontrol ediyoruz:
+$ cat proteins.fasta
+
+Buyuk text datalari ile calisma yontemleri (sekans datasini buyuk bir text datasi olarak dusunebilirsiniz):
+
+Veri cok buyuk oldugundan text icin kullandiginiz grafik arayuzlu programlarin veriyi 'memory' uzerinde tutmasi cok masrafli olur. Gb buyuklugunde iki FASTA dosyasini birlestirmek isterseniz, birini acip kopyalayip-yapistirirken cok fazla memory'yi isgal etmis olursunuz, ayrica mouse ile bu islemi yaparken bir kismini silebilir, tumunu secemeyebilirsiniz vb. Sonunda yapacaginiz analiz & bulacaginiz sonuclar hatali olacaktir. Shell bu durumlarda hem memory'de yer tutmadan hem de sizden kaynaklanan hataya yol acmadan cozmenizi saglar.
+
+Dosya icinden hizlica bilgi almak:
+Mesela sadece protein ismini görmek istiyoruz nasıl yapabiliriz?
+$ grep protein tb1-protein.fasta
+#grep komutu dosyanin icinde belli bir karakteri aratmanizi saglar. Tum satiri verir.
+Ya da
+$grep -v "^>" tb1-protein.fasta
+#grep man ile bakabiliriz: 
+# Ilk is FASTA dosyasinda 'header'i iceren satirlari islem disi birakmak (-v).
+# " " isareti kullanarak ilgili kalibi gerp'e tanittik.
+ '^'isareti aranan pattern'i sadece satir basi ile sinirliyor.
+
+Not: grep'in cok hizli olmasinin nedenlerinden biri, bir kalibi buldugunda, o satirin gerisini
+arastirmayi birakmasi! -o secenegini inceleyin:
+grep -o CRGEG proteins.fasta
+
+Ya da mesela DNA fastası acalim.
+$ cp ../../tb1.fasta .
+$ cat tb1.fasta
+
+Icine kısaca bakalım:
+
+$ head tb1.fasta
+$ cat tb1.fasta
+$ tail tb1.fasta
+$ wc tb1.fasta
+$ wc -l tb1.fasta
+
+COK ONEMLI UYARI: wc gibi islemlerde data formatinin duzgun oldugu sanisi uzerinden hareket ediyoruz.
+Eger .txt dosyasi 3 adet bos satir iceriyorsa (whitespace) wc veriye dair 3 fazla satir bilgisi verir!
+ 
+Bu dosyanın icinde ATCG olmayan bir nükleotitler var mi?
+
+$ grep -v A tb1.fasta
+$ grep -v ATCG tb1.fasta
+$ grep -v "^>" tb1.fasta
+
+Pipeline'a giris:
+
+Pipeline olusturmak Linux-bash'in en guclu ozelliklerinden birisidir. Ornegin 3 farkli program ile bir sekans datasini analiz edeceksiniz. Diyelim ki ilk adim alignment, ikinci adim filogenetik agac olusturmak, ucuncu adim ise atasal DNA dizisi olusturmak. Tek tek adimlari sira ile uygulayabilirsiniz. Veya bir pipeline olusturarak tek bir komut ile islemi hizla gerceklestirebilirsiniz! Ayrica, ornegin birinci ve ikinci islemlerin sonunda olusan ciktiyi bilgisayariniza kaydetmeden pipeline sadece son islemin ciktisini verir. Ozetle pipeline, ilk islemin ciktisini (output) '|' isaretinden sonra gelen ikinci islemde kullanilan araca girdi (input) olarak verir.
+
+SORT ile veri dosyasi icerigini duzenlemek / istenilen sutuna gore siralamak:
+$ cd ../../
+$ ls
+$ ls | sort
+$ ls | sort -r
+$ ls | sort --random-sort
+
+Ornek: tb1.fasta dosyasinda nukleotid disinda bulunan diger karakterleri pipeline ile arayalim.
+
+$ cd tugce/data/
+$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
+
+
+# Komutun uzun aciklamasi:
+
+1) grep -v "^>" tb1.fasta |
+Ilk is FASTA dosyasinda 'header'i iceren satirlari islem disi birakmak (-v).
+" " isareti kullanarak ilgili kalibi gerp'e tanittik.
+ '^'isareti aranan pattern'i sadece satir basi ile sinirliyor.
+'|' pipe ile ciktiyi (output) diger bir bash islemine/programina aktaran pipeline isareti.
+
+2) grep --color -i "[^ATCG]"
+caret '^' sembolu [] icinde kullanilinca yaninda oldugu karakterlerin disindaki (!)
+karakterleri ariyor. Yani [^ATCG], A, T, C, ve T olmayan karakterler ile eslesiyor.
+'-i' buyuk-kucuk harf ayrimini ortadan kaldiriyor, eger a, t, g, ve c olarak kaydedilen
+nukleotidler var ise onlari da dahil etmek dusuncesi ile...
+grep'in --color secenegi bulunan karakterleri renkli olarak
+gosteriyor.
+
+pipeline ara-cikti (output) sonuclarini dosyaya yazdirmaz! Boylece disk'e yuk olmaz. 
+
+$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > results.txt
+
+Islemleri arka-planda yurutmek:
+
+Shell'de komutu yazip enter'a basinca, bu shell iletisine ulasim kapanir. Eger terminalde baska islem yapmak isterseniz yeni terminal acmak tekrar istediginiz altdizine gitmek zorunda kalirsiniz. Ki bu ideal bir yontem degil. Eger isleminiz uzun suren bir islem ise, islemi baslattiktan sonra islemin bitmesini beklemeden komut dizininde komut islemlerine devam etmek icin uzun olan islemi arka planda calistirabilirsiniz. Boylece diger komutlari yazmaya devam edebilirsiniz.
+
+(&) komutun arkasina yazildiginda, komut, arka-planda calisir:
+
+$ grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]" > results.txt &
+
+$ jobs
+# islemin nasil gittigini gosterir.
+
+NOT: terminalin kapatilmasi islemi durdurur!
+
+Bilgisayarinizda hangi programlar calisiyor:
+$ top
+# size PID'yi verecek - process ID bilgisi veriyor
+"Kill" komutu:
+$ kill 20352
+# process ID'su 20352 olan devam eden bir islemi sonlandirir.
+
+
+Sutun verisi ile calismak:
+
+Surekli sadece belli sutunlarda bulunan verilerle calisip diger sutunlari analizimiz disinda birakmamiz gereken durumlar oluyor. Sadece ilgilendigimiz sutunlari almak mumkun. Farkli araclar kullandik derste.
+
+CUT araci: diyelim ki protein isimlerini elde etmek istiyoruz:
+
+grep '>' proteins.fasta | cut -d ' ' -f 1
+
+
+
+CUT ile ilgili cok FAYDALI bir bilgi:
+
+-f argumani hangi sutunu alacagimizi belirler. ayrica birden fazla sutun icin de yine -f kullaniriz. -f 3, 5, 9 veya -f 3-10 gibi. Sutunlari cut ile bastan istegimize gore siralamak mumkun degil! cut -6, 5, 8, 2 mantik olarak calismayacaktir. Ornegin, cut ile, Mus musculus gtf dosyasini 3 sutunlu tab-delimited genomik siralama dosyasina donusturelim (kromozom, baslangic, bitis):
+
+
+
+SON
