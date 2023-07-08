@@ -142,6 +142,17 @@ Dosyanin icine girdiniz. I yazip icine bu benim ikinci dosyam yazin. Kaydedip ci
 			
 dosya isimlerine txt eklersek word’de acabiliriz. Sart degil, genelde ihtiyac yok cunku buna. 
 
+## SORT ile veri dosyasi icerigini duzenlemek / istenilen sutuna gore siralamak:
+```
+			cd ../../
+			ls
+			ls | sort
+			ls | sort -r
+			ls | sort --random-sort
+```
+			
+
+
 Dosya silmek:
 ```
 			rm ikinci_dosyam.txt birinci_dosyam
@@ -155,7 +166,7 @@ Dizin silmek:
    			rm -r test_dizini
 ```
 			
-# Buyuk text datalari ile calisma yontemleri (sekans datasini buyuk bir text datasi olarak dusunebilirsiniz):
+# Buyuk text verileri ile calisma yontemleri (dizi verisini buyuk bir text verisi olarak dusunebilirsiniz):
 
 Veri cok buyuk oldugundan text icin kullandiginiz grafik arayuzlu programlarin veriyi 'memory' uzerinde tutmasi cok masrafli olur. Gb buyuklugunde iki FASTA dosyasini birlestirmek isterseniz, birini acip kopyalayip-yapistirirken cok fazla memory'yi isgal etmis olursunuz, ayrica mouse ile bu islemi yaparken bir kismini silebilir, tumunu secemeyebilirsiniz vb. Sonunda yapacaginiz analiz & bulacaginiz sonuclar hatali olacaktir. Shell bu durumlarda hem memory'de yer tutmadan hem de sizden kaynaklanan hataya yol acmadan cozmenizi saglar.
 
@@ -217,13 +228,11 @@ arastirmayi birakmasi! -o secenegini inceleyin:
 ```
 			grep -o CRGEG proteins.fasta
 ```
-			
-Ya da mesela DNA fastası acalim.
+
+   
+Simdi de DNA fastası acalim.
 ```
-			cp ../../tb1.fasta .
-```
-			
-```
+			cp ../../../tb1.fasta .
 			cat tb1.fasta
 ```
 			
@@ -245,47 +254,33 @@ Bu dosyanın icinde ATCG olmayan bir nükleotitler var mi?
 ```
 			grep -v A tb1.fasta
 			grep -v ATCG tb1.fasta
-			grep -v "^>" tb1.fasta
+			grep --color -i "[^ATCG]" tb1.fasta
 ```
-			
-# Pipeline'a giris:
-
-Pipeline olusturmak Linux-bash'in en guclu ozelliklerinden birisidir. Ornegin 3 farkli program ile bir sekans datasini analiz edeceksiniz. Diyelim ki ilk adim alignment, ikinci adim filogenetik agac olusturmak, ucuncu adim ise atasal DNA dizisi olusturmak. Tek tek adimlari sira ile uygulayabilirsiniz. Veya bir pipeline olusturarak tek bir komut ile islemi hizla gerceklestirebilirsiniz! Ayrica, ornegin birinci ve ikinci islemlerin sonunda olusan ciktiyi bilgisayariniza kaydetmeden pipeline sadece son islemin ciktisini verir. Ozetle pipeline, ilk islemin ciktisini (output) '|' isaretinden sonra gelen ikinci islemde kullanilan araca girdi (input) olarak verir.
-
-## SORT ile veri dosyasi icerigini duzenlemek / istenilen sutuna gore siralamak:
-```
-			cd ../../
-			ls
-			ls | sort
-			ls | sort -r
-			ls | sort --random-sort
-
-Ornek: tb1.fasta dosyasinda nukleotid disinda bulunan diger karakterleri pipeline ile arayalim.
-
-```
-			cd tugce/data/
-			grep -v "^>" tb1.fasta | grep --color -i "[^ATCG]"
-
-
-Komutun uzun aciklamasi:
-
-1) grep -v "^>" tb1.fasta |
-
-Ilk is FASTA dosyasinda 'header'i iceren satirlari islem disi birakmak (-v).
-
-" " isareti kullanarak ilgili kalibi gerp'e tanittik.
-
-'^'isareti aranan pattern'i sadece satir basi ile sinirliyor.
-
-'|' pipe ile ciktiyi (output) diger bir bash islemine/programina aktaran pipeline isareti.
-
-2) grep --color -i "[^ATCG]"
-
-caret '^' sembolu [] icinde kullanilinca yaninda oldugu karakterlerin disindaki (!) karakterleri ariyor. Yani [^ATCG], A, T, C, ve T olmayan karakterler ile eslesiyor.
+'^' sembolu [] icinde kullanilinca yaninda oldugu karakterlerin disindaki (!) karakterleri ariyor. Yani [^ATCG], A, T, C, ve T olmayan karakterler ile eslesiyor.
 
 '-i' buyuk-kucuk harf ayrimini ortadan kaldiriyor, eger a, t, g, ve c olarak kaydedilen nukleotidler var ise onlari da dahil etmek dusuncesi ile...
 
 grep'in --color secenegi bulunan karakterleri renkli olarak gosteriyor.
+
+ATCG disinda bir harf var belli ki ama illa genin ismi olan satir da yaziliyor ekrana. Bundan nasil kurtulabiliriz?
+   
+# Pipeline'a giris:
+
+Pipeline olusturmak Linux-bash'in en guclu ozelliklerinden birisidir. Ornegin 3 farkli program ile bir sekans datasini analiz edeceksiniz. Diyelim ki ilk adim alignment, ikinci adim filogenetik agac olusturmak, ucuncu adim ise atasal DNA dizisi olusturmak. Tek tek adimlari sira ile uygulayabilirsiniz. Veya bir pipeline olusturarak tek bir komut ile islemi hizla gerceklestirebilirsiniz! Ayrica, ornegin birinci ve ikinci islemlerin sonunda olusan ciktiyi bilgisayariniza kaydetmeden pipeline sadece son islemin ciktisini verir. Ozetle pipeline, ilk islemin ciktisini (output) '|' isaretinden sonra gelen ikinci islemde kullanilan araca girdi (input) olarak verir.
+
+
+Ornek: tb1.fasta dosyasinda nukleotid disinda bulunan diger karakterleri pipeline ile arayalim.
+
+```
+			grep  --color -i "[^ATCG]" tb1.fasta | grep -v "^>" 
+```
+
+  oldu ama rengi kaybettik. Ne yapsak?
+  ```
+			grep -v "^>" tb1.fasta |  grep --color -i "[^ATCG]"
+```
+
+'|' pipe ile ciktiyi (output) diger bir bash islemine/programina aktaran pipeline isareti.
 
 pipeline ara-cikti (output) sonuclarini dosyaya yazdirmaz! Boylece disk'e yuk olmaz. 
 
@@ -324,18 +319,13 @@ process ID'su 20352 olan devam eden bir islemi sonlandirir.
 
 ## Sutun verisi ile calismak:
 
-Surekli sadece belli sutunlarda bulunan verilerle calisip diger sutunlari analizimiz disinda birakmamiz gereken durumlar oluyor. Sadece ilgilendigimiz sutunlari almak mumkun. Farkli araclar kullandik derste.
+Surekli sadece belli sutunlarda bulunan verilerle calisip diger sutunlari analizimiz disinda birakmamiz gereken durumlar oluyor. Sadece ilgilendigimiz sutunlari almak mumkun. 
 
-CUT araci: diyelim ki protein isimlerini elde etmek istiyoruz:
+Diyelim ki protein isimlerini elde etmek istiyoruz:
 
-grep '>' proteins.fasta | cut -d ' ' -f 1
-
-
-
-CUT ile ilgili cok FAYDALI bir bilgi:
-
--f argumani hangi sutunu alacagimizi belirler. ayrica birden fazla sutun icin de yine -f kullaniriz. -f 3, 5, 9 veya -f 3-10 gibi. Sutunlari cut ile bastan istegimize gore siralamak mumkun degil! cut -6, 5, 8, 2 mantik olarak calismayacaktir. Ornegin, cut ile, Mus musculus gtf dosyasini 3 sutunlu tab-delimited genomik siralama dosyasina donusturelim (kromozom, baslangic, bitis):
-
-
+```
+			grep '>' proteins.fasta | cut -d ' ' -f 1
+```
+			
 
 SON
