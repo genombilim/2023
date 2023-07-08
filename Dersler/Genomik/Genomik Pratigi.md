@@ -11,18 +11,20 @@ Bu islemleri yapmak icin hal-i hazirda pek cok biyoinformatik araci zaten intern
 Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki noktalari unutmak, tirnak isaretlerindeki duzeltmeler hataya sebep olur. Mutlaka ayni seyi yapitirdiginiza emin olun. 
 
 - Ilk olarak terminali acin. 
-- Once asagidaki kodu kullanarak ssh ile bizim truba hesabimiza baglanin:
+- TRUBA sunucularına bağlanmak için once Ana dizindeki truba hesaplar excel dosyasindan kendi kullanici isminizi ve sifrenizi bulun yine.
+  
+• Kullanıcı İsmi: egitimXX
+• Şifre: 
+
+- Sonra da aşağıdaki kodu terminal ekranınıza yazmanız gerekecek. Eğer, bu sunucuda ilk defa bağlanıyorsanız bir uyarı alabilirisiniz. Yes diye cevap vermeniz gerekmektedir.
+
+Şifrenizi yazarken ekranda hiç bir imleç belirmez. Endişe etmeyin.
  ```
-			ssh egitim20@193.140.99.61 -p 1212
-			şifre: 
-
-			Levrek1'e yönlendirilmek için;
-
-			ssh egitimXX@levrek1
-			Şifre: sana verilen şifre
+			ssh egitimXX@levrek1.ulakbim.gov.tr
+			şifre: adiniza verilen şifre
 
 ``` 
-- Trubaya baglaninca ilk olarak kendinize ait bir dizin olusturun. Zaten ilk derste oluturduysaniz da onu kullanin. Icine genomik diye baska bir dizin olusturun. cd dedikten sonra <isminiz> kismini silip kendi isminize actiginiz dizin ismini yazin.
+- Trubaya baglaninca ilk olarak kendinize ait olan dizine gecin. Icine genomik diye baska bir dizin olusturun. cd dedikten sonra <isminiz> kismini silip kendi isminize actiginiz dizin ismini yazin.
 
 ```
 			cd <isminiz>
