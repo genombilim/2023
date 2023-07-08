@@ -164,8 +164,8 @@ Once buyuk_veri diye bir dizinin olusturun ve o dizine gecin. Simdi o dizinimizi
 
 ## Dosyalari kopyalamak:
 ```
-			cp ../../../tb1-protein.fasta .
-   			cp ../../../tga1-protein.fasta .
+			cp ../../tb1-protein.fasta .
+   			cp ../../tga1-protein.fasta .
    			ls
 ```
 			
