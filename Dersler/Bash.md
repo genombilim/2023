@@ -1,124 +1,201 @@
 # Bash'e giris
 
+Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki noktalari unutmak, tirnak isaretlerindeki duzeltmeler hataya sebep olur. Mutlaka ayni seyi yapitirdiginiza emin olun. 
+
+- Ilk olarak terminali acin. 
+- TRUBA sunucularına bağlanmak için once Ana dizindeki truba hesaplar excel dosyasindan kendi kullanixi isminizi ve sifrenizi not alin.
+• Kullanıcı İsmi: egitimXX
+• Şifre: 
+- Sonra da aşağıdaki kodu terminal ekranınıza yazmanız gerekecek. Eğer, bu sunucuda ilk defa bağlanıyorsanız bir uyarı alabilirisiniz. Yes diye cevap vermeniz gerekmektedir.
+
+Şifrenizi yazarken ekranda hiç bir imleç belirmez. Endişe etmeyin.
+ ```
+			ssh egitimXX@levrek1.ulakbim.gov.tr
+			şifre: sana verilen şifre
+
+``` 
+- Trubaya baglaninca ilk olarak kendinize ait bir dizin olusturun. Kendi ilk isminiz kucuk harflerle ve bitisik olarak.
+```
+			mkdir <isminiz>
+			cd <isminiz>
+
+```
+
 Home directory (konum/altdizin): bash'i baslattiginizda bulundugunuz ilk konum.
 
 bulundugunuz konumu/altdizini gorunteleyin:
-$pwd
-
+```
+			pwd
+```
+			
 Nasil bir ust dizine gidecegiz?
-$ cd ../
-
+```
+			cd ../
+```
+			
 Listele komutu:
-$ ls
-
-#Soru: komut neden acikca 'list' olarak kullanilmiyor da 'ls' olarak kullaniliyor?
-#Cevap: kisaltma ~ zaman
-
-$ ls -l
-# listeleme 'output'unun tek satir halinde gosterilmesini saglar
+```
+			ls
+```
+			
+Soru: komut neden acikca 'list' olarak kullanilmiyor da 'ls' olarak kullaniliyor?
+Cevap: kisaltma ~ zaman
 
 Nasil bir altdizine gidecegiz?
-$ cd tugce/
-
+```
+			cd tugce/
+```
+			
 Bir seyi ekrana yazdırmak icin:
-$ echo merhaba
-
+```
+			echo merhaba
+```
+			
 Ekrani temizlemek icin:
-
-$ clear
-#ekran komutlarini temizler
-
-Yukari asagi gitmek:
+```
+			clear
+```
 
 Komut satirlarinda eski yazdiklarini gormek icin, bazen eski komutlari tekrar calistirmak icin vs 'yukari & 'asagi' oklari kullanabilirsiniz.
 
-Ctrl + a #basa git
-Ctrl + e #sona git ya da asagi ok, yukari ok
+Satir basina gitmek icin Ctrl + a ya basin, sona gitmek icin ya saga ok, ya da yukari asagi oklar.
+
 
 Cok onemli bir ozellik - komut tarihcesi (history):
-$ history
-#dersin sonunda bunu tekrar komutlayip yeni dosyaya kaydedebilirsiniz.
+```
+			history
+```
+			
+dersin sonunda bunu tekrar komutlayip yeni dosyaya kaydedebilirsiniz.
 
 Yeni bir dizin olustur:
-$ mkdir tugce_yeni_dizin
-$ ls
-
+```
+			mkdir bash_dersi
+   ls
+```
+			
 Tek adimda istenilen altdizine gitmek:
-#once bir geri cikalim:
-$cd ../
-#sonra olusturdugumuz dosyanin icine girelim:
+once bir geri cikalim:
 
-$ cd /tugce/tugce_yeni_dizin/
-# '/' altdizin oldugunu belirtiyor & farkli altdizinleri hiyerarsiye gore diziyor – ust konumdan alt konuma dogru.
+```
+			cd ../
+```
+			
+sonra olusturdugumuz dosyanin icine girelim:
 
-#Bir dizinden/konumdan 'home-directory'ye gecmenin kisa yolu:
-$ cd ~
+```
+			cd /<isminiz>/bash_dersi/
+```
+			
+ '/' altdizin oldugunu belirtiyor & farkli altdizinleri hiyerarsiye gore diziyor – ust konumdan alt konuma dogru.
 
+Bir dizinden/konumdan 'home-directory'ye gecmenin kisa yolu:
+```
+			cd ~
+```
+			
 Peki ilgili arac icin bulunan seceneklere dair nereden bilgi alabiliriz?
 Man sayfasi ilgili araci calistiracak komutlar uzerine bilgi verir:
 
-$ man ls
-# koseli parantez icinde verilen secenekler opsiyoneldir. Komut o secenekler olmadan da caisir. Fakat secenekler size cok faydali calismanizda yardimci olur. Secenekleri gozden gecirmeniz (man ile) cok faydali.
+```
+			man ls
+```
+			
+koseli parantez icinde verilen secenekler opsiyoneldir. Komut o secenekler olmadan da caisir. Fakat secenekler size cok faydali calismanizda yardimci olur. Secenekleri gozden gecirmeniz (man ile) cok faydali.
 
-#'man' sayfasindan ‘q’ ile cikabiliriz.
+'man' sayfasindan ‘q’ ile cikabiliriz.
 
-Yeni Dosya uretmek 1:
+# Yeni Dosya uretmek 1:
 
-$ echo bu benim ilk dosyam > tugce_ilk_dosyam.txt
-# > isareti oncesindeki icerigi sonrasindaki dosyaya kaydeder. - uzerine yaziyor, dikkat!
-# '>>' yine yonlendiriyor fakat eger o dosya ismi veri iceriyorsa sonuna ekler.
-#isminizi tasiyan dizinin icinde ilk_dosyam adinda bir dosya olusturduk. Icine de bu benim ilk dosyam yazdik.
-#Dosya isimlendirmelerinizin mantikli, anlasilabilir, birbirleri ile iliskili olmasi cok ama cok onemli!
-#dosya isimlendirmelerine bosluk vermekten ve /, ‘, “, >, .  isartetlini kullanmaktan kacinalim. Bunlar komut satirinin kullandigi harfler oldugu icin dosya/dizin ismina koyarsak karisirlar.
+```
+			cd <isminiz>/bash_dersi/
+   echo bu benim ilk dosyam > ilk_dosyam.txt
+```
+			
+> isareti oncesindeki icerigi sonrasindaki dosyaya kaydeder. - uzerine yaziyor, dikkat!
+
+'>>' yine yonlendiriyor fakat eger o dosya ismi veri iceriyorsa sonuna ekler.
+
+isminizi tasiyan dizinin icinde ilk_dosyam adinda bir dosya olusturduk. Icine de bu benim ilk dosyam yazdik.
+
+Dosya isimlendirmelerinizin mantikli, anlasilabilir, birbirleri ile iliskili olmasi cok ama cok onemli!
+
+Dosya isimlendirmelerine bosluk vermekten ve /, ‘, “, >, .  isartetlini kullanmaktan kacinalim. Bunlar komut satirinin kullandigi harfler oldugu icin dosya/dizin ismina koyarsak karisirlar.
 
 Dosyanin icine bakmak:
-$cat tugce_ilk_dosyam.txt
-#cat komutu sonrasinda yazili olan dosyanin (dosyalarin) icergini gosterir. Bir kac dosya icerigini tek bir dosya kaydetmek icin de kullanabilecegi icin ismi concatanate’ten gelir. 
-# Dosya ismini girerken mutlaka TAB kullanın! TAB'in zaman kazandirmasi disinda en onemli ozelligi hatali isimlendirmeyi onler, yanlis dosya uzer
+```
+			cat ilk_dosyam.txt
+```
+			
+cat komutu sonrasinda yazili olan dosyanin (dosyalarin) icergini gosterir. Bir kac dosya icerigini tek bir dosya kaydetmek icin de kullanabilecegi icin ismi concatanate’ten gelir. 
+Dosya ismini girerken mutlaka TAB kullanın! TAB'in zaman kazandirmasi disinda en onemli ozelligi hatali isimlendirmeyi onler, yanlis dosya uzer
 
-Yeni Dosya uretmek 2:
-$ vim ikinci_dosyam.txt
-$ ls
-$ cat ikinci_dosyam.txt
-# dosya isimlerine txt eklersek word’de acabiliriz. Sart degil, genelde ihtiyac yok cunku buna. Ay
-#I harfine basarak icine bir seyler yazabilir, once escape sonra ayni anda :x tuslarina basak cikabiliriz.
+# Yeni Dosya uretmek 2:
+```
+			vim ikinci_dosyam.txt
+```
+Dosyanin icine girdiniz. I yazip icine bu benim ikinci dosyam yazin. Kaydedip cikmak icin once escape'e basin, sonra iki nokta ust uste yazip x yazin (:x). Kaydedip cikmis olacaksiniz.
+```
+   ls
+   cat ikinci_dosyam.txt
+```
+			
+dosya isimlerine txt eklersek word’de acabiliriz. Sart degil, genelde ihtiyac yok cunku buna. 
 
 Dosya silmek:
-$ rm ikinci_dosyam.txt tugce_birinci_dosyam
-$ ls
-# tum silmek istediklerimizi rm’un arkasina yazip tek tusla silebiliriz. 
+```
+			rm ikinci_dosyam.txt birinci_dosyam
+```
+tum silmek istediklerimizi rm’un arkasina yazip tek tusla silebiliriz. 
 
 Dizin silmek:
-$ mkdir test_dizini
-$ ls
-$ rm -r test_dizini
+```
+			mkdir test_dizini
+   ls
+   rm -r test_dizini
+```
+			
+# Buyuk text datalari ile calisma yontemleri (sekans datasini buyuk bir text datasi olarak dusunebilirsiniz):
 
-Dosyalari tasimak, yeniden adlandirmak:
+Veri cok buyuk oldugundan text icin kullandiginiz grafik arayuzlu programlarin veriyi 'memory' uzerinde tutmasi cok masrafli olur. Gb buyuklugunde iki FASTA dosyasini birlestirmek isterseniz, birini acip kopyalayip-yapistirirken cok fazla memory'yi isgal etmis olursunuz, ayrica mouse ile bu islemi yaparken bir kismini silebilir, tumunu secemeyebilirsiniz vb. Sonunda yapacaginiz analiz & bulacaginiz sonuclar hatali olacaktir. Shell bu durumlarda hem memory'de yer tutmadan hem de sizden kaynaklanan hataya yol acmadan cozmenizi saglar.
 
-bash_dersi diye bir dizinin olusturun ve o dizine gecin.
+
+Once buyuk_veri diye bir dizinin olusturun ve o dizine gecin. Simdi o dizinimizi olusturalim.
 
 Dosyalari kopyalamak:
-$ cp ../../tb1-protein.fasta .
-$ cp ../../tga1-protein.fasta .
-$ ls
-#cp kendisinden sonra yazilan tum dosyalari en sondaki dizinin icine kopyalar. Nokta isareti icinde bulundugumuz dizini isaret eder.
+```
+			cp ../../../tb1-protein.fasta .
+   cp ../../../tga1-protein.fasta .
+   ls
+```
+			
+cp kendisinden sonra yazilan tum dosyalari en sondaki dizinin icine kopyalar. Nokta isareti icinde bulundugumuz dizini isaret eder.
 
 Dosyalari bir dizinden digerine tasimak:
-$mkdir ../data
-
-#Dosyalari data dizinine tasiyalim:
-$ mv tb1-protein.fasta ../data/
-$ mv tga1-protein.fasta ../data/
-$ ls ../data/
-
+```
+			mkdir ../data
+```
+			
+Dosyalari data dizinine tasiyalim:
+```
+			mv tb1-protein.fasta ../data/
+   mv tga1-protein.fasta ../data/
+   ls ../data/
+```
+			
 Dosyalari tek bir dosyada toplamak:
-$ cd ../data/
-$ cat *protein.fasta > proteins.fasta
-# yildiz isareti joker gibidir, herhangi bir harf ve harf dizisi anlamina gelir.
-# kaydetti mi kontrol ediyoruz:
-$ cat proteins.fasta
-
-Buyuk text datalari ile calisma yontemleri (sekans datasini buyuk bir text datasi olarak dusunebilirsiniz):
+```
+			cd ../data/
+  cat *protein.fasta > proteins.fasta
+```
+			
+yildiz isareti joker gibidir, herhangi bir harf ve harf dizisi anlamina gelir.
+kaydetti mi kontrol ediyoruz:
+```
+			cat proteins.fasta
+```
+			
+# Buyuk text datalari ile calisma yontemleri (sekans datasini buyuk bir text datasi olarak dusunebilirsiniz):
 
 Veri cok buyuk oldugundan text icin kullandiginiz grafik arayuzlu programlarin veriyi 'memory' uzerinde tutmasi cok masrafli olur. Gb buyuklugunde iki FASTA dosyasini birlestirmek isterseniz, birini acip kopyalayip-yapistirirken cok fazla memory'yi isgal etmis olursunuz, ayrica mouse ile bu islemi yaparken bir kismini silebilir, tumunu secemeyebilirsiniz vb. Sonunda yapacaginiz analiz & bulacaginiz sonuclar hatali olacaktir. Shell bu durumlarda hem memory'de yer tutmadan hem de sizden kaynaklanan hataya yol acmadan cozmenizi saglar.
 
