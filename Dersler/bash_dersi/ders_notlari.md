@@ -177,8 +177,8 @@ Once buyuk_veri diye bir dizinin olusturun ve o dizine gecin. Simdi o dizinimizi
 
 ## Dosyalari kopyalamak:
 ```
-			cp ../../egitim/bash_dersi_dosyalari/tb1-protein.fasta .
-   			cp ../../egitim/bash_dersi_dosyalari/tga1-protein.fasta .
+			cp ../../../egitim/bash_dersi_dosyalari/tb1-protein.fasta .
+   			cp ../../../egitim/bash_dersi_dosyalari/tga1-protein.fasta .
    			ls
 ```
 			
@@ -234,7 +234,7 @@ arastirmayi birakmasi! -o secenegini inceleyin:
    
 Simdi de DNA fastası acalim.
 ```
-			cp ../../../bash_dersi_dosyalari/tb1.fasta .
+			cp ../../../egitim/bash_dersi_dosyalari/tb1.fasta .
 			cat tb1.fasta
 ```
 			
