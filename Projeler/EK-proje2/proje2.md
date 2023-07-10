@@ -25,3 +25,20 @@ Ardından geliştirdiğiniz bu yöntemi bir R fonskiyonu haline getirerek, biyol
 Kullanacağınız basit veri set bir sonraki şekilde görülmektedir.
 
 ![Kullanılacak Veri Seti](fig1.png)
+
+## Kullanılacak veri
+
+Aşağıda simule edilmiş bir veri bulunmaktadır. Bununla işe başlayalım:
+
+```R
+library(ggplot2)
+set.seed(123)
+
+x <- runif(50, -5, 5)
+y <- x + rnorm(50) + 3
+df <- data.frame(y,x)
+
+ggplot(data = df, aes(y=y,x=x)) + geom_point()
+```
+
+
