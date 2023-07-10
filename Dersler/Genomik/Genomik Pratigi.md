@@ -23,7 +23,16 @@ Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki no
 			ssh egitimXX@levrek1.ulakbim.gov.tr
 			şifre: adiniza verilen şifre
 
-``` 
+```
+- Kullanacagimiz programlari hesabiniza yuklemek icin asagidaki satiri girin:
+```
+			cd egitim
+			ls
+			source miniconda3/bin/activate 
+			conda activate bioinformatics
+			cd ../egitim6	 
+```
+
 - Trubaya baglaninca ilk olarak kendinize ait olan dizine gecin. Icine genomik diye baska bir dizin olusturun. cd dedikten sonra <isminiz> kismini silip kendi isminize actiginiz dizin ismini yazin.
 
 ```
@@ -31,10 +40,6 @@ Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki no
 			mkdir Genomik
 			cd Genomik
 
-```
-- Programlari hesabiniza yuklemek icin asagidaki satiri girin:
-```
-			source /truba/home/egitim20/.bashrc	 
 ```
 
 # SRA'den Okumalari Indirelim
