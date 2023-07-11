@@ -26,17 +26,15 @@ Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki no
 ```
 - Kullanacagimiz programlari hesabiniza yuklemek icin asagidaki satiri girin:
 ```
-			cd egitim
-			ls
+			cd ../egitim
 			source miniconda3/bin/activate 
 			conda activate bioinformatics
-			cd ../egitim6	 
+			cd ../egitimX	 
 ```
 
-- Trubaya baglaninca ilk olarak kendinize ait olan dizine gecin. Icine genomik diye baska bir dizin olusturun. cd dedikten sonra <isminiz> kismini silip kendi isminize actiginiz dizin ismini yazin.
+- Trubaya baglaninca ilk olarak genomik diye bir dizin olusturun.
 
 ```
-			cd <isminiz>
 			mkdir Genomik
 			cd Genomik
 
@@ -46,18 +44,20 @@ Asagidaki kodlari tek tek terminalinize kopyalayip yapistiracaksiniz. Sondaki no
 
 SRA yani kisa dizi arsivi ozellikle yeni dizileme teknolojileri kullanilarak uretilmis genelde 1000 bazdan kisa dizilerin depolandigi bir veri tabanidir. SRA arastirmacilara kisa dizilerini kullanima acik olarak depolayabilecekleri bir yer gorevi gormekle kalmayip ayni zamanda aranilan diziye ve diziyle ilgili detayli deneysel bilgiye hizli bir erisime olanak verir. https://www.ncbi.nlm.nih.gov/sra
 
-sra'in kendi araci olan sra toolkit'in icinden fastq-dump konutuyla bir kisa okuma indirelim. https://hpc.nih.gov/apps/sratoolkit.html
+sra'in kendi araci olan sra toolkit'in icinden fastq-dump komutuyla okumalari indirebilirsiniz. Bu komut iki tane dosya indirecek: one dogru diziler icin SRR…_1.fastq ve arkaya dogru diziler icin SRR…_2.fastq. Iki tane dosya olmasinin sebebi dizilerin paired-end teknolojisiyle uretilmis olmasi. Paired-end, asagida da gordugun gibi bir fragmanin iki ucundan dizilenmesini saglar, bu sayede cok daha yuksek kalitede bir dizi elde edilir. Biz kolaylik acisindan bu derste sadece one dogru uzanan dizilerle calisacagiz.
+
+
+Bugun biz size zaten okumalari indirdik. Onu kendi dosyaniza kopyalayacaksiniz. https://hpc.nih.gov/apps/sratoolkit.html
 
 - Okumalarinizi fastq-dump'i kullanarak indirin:  
 
 ```
-			fastq-dump -I --split-files SRR1583053
-			cp SRR1583053_1.fastq reads.fastq
+			cp ../../egitim/reads.fastq .
   ```
 
 ![Steps-in-next-generation-sequencing-A-Extracted-DNA-is-randomly-broken-into-1000-bp](https://github.com/genombilim/2023/assets/37342417/6b4693c3-77b5-46e3-b74d-467425c933f8)
 
-Bu komut iki tane dosya indirecek: one dogru diziler icin SRR…_1.fastq ve arkaya dogru diziler icin SRR…_2.fastq. Iki tane dosya olmasinin sebebi dizilerin paired-end teknolojisiyle uretilmis olmasi.  Paired-end, asagida da gordugun gibi bir fragmanin iki ucundan dizilenmesini saglar, bu sayede cok daha yuksek kalitede bir dizi elde edilir. Biz kolaylik acisindan bu derste sadece one dogru uzanan dizilerle calisacagiz.
+
 
 ![paired-end1](https://github.com/genombilim/2023/assets/37342417/3a672293-bb62-41b7-a361-0877512b8519)
 
@@ -73,11 +73,7 @@ Okumalarinizin kalitesinden bahsettik. Nedir bu kalite? Bir bazin  Phred kalite 
 ![Screen-Shot-2018-01-07-at-1 36 09-PM-1024x713](https://github.com/genombilim/2023/assets/37342417/05a343ee-eed5-472c-86c0-08c1afa838ae)
 
 
- - Haydi okumalarinizin kalitesine bakin. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir. Fastqc okuma kalitelerine bakabilelim diye yapilmis bir program. https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
-
-```
-			fastqc
-  ```
+ - Haydi okumalarinizin kalitesine bakalim. Burada okumalarinizi kendi sisteminize kopyalayip fastqc'yi oradan kullanmaniz gerekebilir. Fastqc okuma kalitelerine bakabilelim diye yapilmis bir program. https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
 Neler bakabilirsiniz ve sizce niye bunlara bakmak isteriz?
 
@@ -89,13 +85,10 @@ Neler bakabilirsiniz ve sizce niye bunlara bakmak isteriz?
 - Komut -h yazarak her bir komutun ne yaptigina bakin.
 -  Simdi de bu websitesine bakin yaninizdaki kisi ile : http://hannonlab.cshl.edu/fastx_toolkit/commandline.html Listeden isinize yarayabilecek iki komut bulup sinifta paylasin. 
  
-- Kesilmis ve filtrelenmis dosyalariniza da fastqc ile bakin. Ne goruyorsunuz?
+- Kesilmis ve filtrelenmis dosyalariniza da fastqc ile bakalim. Ne goruyorsunuz?
 Neden bu adimlara gerek var?
 Neden once kestik, sonra filtreledik?
-```
-			fastqc
-  ```
-  
+
   # Referans Genomuna Hizalamak: Insan Metgenomu
 - Mitokondri icin referans genomunu indirecegiz. Bunun icin UCSC genome browser'ina gidin, Download kismindan sirasiyla Human, Chromosomes Chromosome M'i bulun.. Link yazan kisma buldugunuz dosyanin linkini kopyalayin:
 ```
@@ -111,16 +104,35 @@ Bu islemi kolaylastirmak icin biyoinformatik araclari indexleme denilen bir tekn
 
 Biz yerlestirme icin bowtie2 programini kullanacagiz. 
 
-- Referansa hizalayalim:
+- Referansa hizalayalim, onun icin once referansi indeksleyelim:
 ```
 			bowtie2-build ref.fasta ref
-			bowtie2 -x ref -q reads_filtered.fastq -S alignment.sam
+ ```    
+
+Yerlestirme icin ilk asama SAM (Sequence Alignment/Map) dosyasini uretmek. Bu asamayi komut satirindan yaparsaniz, uzun surdugu icin bunu bir script olarak yazip is olarak yollayacagiz. Bunun icin is scriptini asagidaki gibi kendinize kopyyalayin ve calistirin. 
+```
+			cp ../../egitim/samtools.sh .
+			sbatch samtools.sh
+
+ ```    
+Bu arada koda bakalim. Sonra da bitmis mi diye kontrol edelim.
+
+```
+			cat samtools.sh
+			sacct
+
+ ```    
+
+SAM dosyasi insan gozunun okuyabilecegi text formatinda bir dosyadir ve icinde her bir dizi icin bir baslik bir de yerlestirmeyle ilgili detaylarin yer aldigin bir kisim vardir. Dosyanin ilk satirlarini acip icine bir goz atabilirsin. Yandaki link dosya icerigiyle ilgili daha detayli bilgi verir: https://samtools.github.io/hts-specs/SAMv1.pdf
+
+- Referansa hizalayalim:
+```
 			samtools faidx ref.fasta
 			samtools view -bt ref.fasta.fai alignment.sam > alignment.bam
 			samtools sort alignment.bam -o alignment_sorted.bam
 			samtools index alignment_sorted.bam
  ```    
-Bu islem 5-10 dakika icinde bir ilk once SAM (Sequence Alignment/Map) dosyasi uretecek. SAM dosyasi insan gozunun okuyabilecegi text formatinda bir dosyadir ve icinde her bir dizi icin bir baslik bir de yerlestirmeyle ilgili detaylarin yer aldigin bir kisim vardir. Dosyanin ilk satirlarini acip icine bir goz atabilirsin. Yandaki link dosya icerigiyle ilgili daha detayli bilgi verir: https://samtools.github.io/hts-specs/SAMv1.pdf
+
 Yerlestirme bitince ekranda kisa bir rapor belirecek. 
 
 SAM dosyasini analiz etmek icin SAMTools programini kulliyoruz. Her programin kendi indexleme sekli oldugundan referans genomumuzu asagidaki komutu kullanarak tekrar indexlememiz gerek. Bu ref.fasta.fai. isimli bir dosya uretti. 
@@ -156,11 +168,21 @@ Kullandigimiz yerlestirme teknikleri kisa dizileri dogru yerlerine her zaman cok
 
 - Varyantlari bulalim:
 ```
-			bcftools mpileup -f ref.fasta alignment_sorted.bam | bcftools call -mv -Ov -o calls.vcf
-			bcftools mpileup -f ref.fasta alignment_sorted.bam | bcftools call -mv -Oz -o calls.vcf.gz
-  ```
+			cp ../../egitim/bcf.sh .
+			sbatch bcf.sh
+
+ ```  
 
  Eger vaktin varsa, vcf dosyani acip yandaki link yardimiyla icerigini anlamaya calisabilirsin: http://samtools.github.io/hts-specs/VCFv4.2.pdf
+
+
+ Bu arada koda bakalim. Sonra da bitmis mi diye kontrol edelim.
+
+```
+			cat samtools.sh
+			sacct
+
+ ```    
  
 - VCF dosyasini analiz etmek icin varyantlarin indexlenmesi gerekebilir. Bunun icin asagidaki komutu girecegiz:
 ```
