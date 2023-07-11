@@ -21,6 +21,34 @@ Ardından, ağız mikrobiyotasına ait olan *Streptococcus pneumoniae* ile eşle
 
 Son olarak, *bwa* (Li and Durbin, 2009) programı ile bu okumaları *S. pneumoniae* referans genomuna hizalayacağız ve *mapDamage2* (Jónsson et al., 2013) isimli programla deaminasyon profillerini elde edeceğiz.
 
+## Metdoloji
+
+
+### Kraken2 veri tabanı
+
+Çalışmada kullanılacak veri tabanını [şu bağlantıdan](https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08gb_20230605.tar.gz) indirebilirsiniz. Ya da terminal üzerinden aşağıdaki satırı yazalım:
+
+```bash
+wget https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08gb_20230605.tar.gz
+```
+
+Arından veri tabanını açalım:
+
+```bash
+tar -xzf https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08gb_20230605.tar.gz
+
+```
+
+Bu veri tabanı NCBI RefSeq veri tabanında bulunan Arke, Bakteri, Viral diziler, ve Mantarları içeren ve 8GB olacak şekilde organize edilmiştir. Bu sayede en fazla 8GB hafızası bulunan sistemlerde kullanabilirsiniz.
+
+Aynı zamanda Kraken2 veri tabanı aşağıdaki klasör içerisinde de bulunmaktadır:
+
+```
+/truba/home/egitim/evogen/Emrah/anmet4evogen/proje-1/data/databases/kraken2
+```
+
+
+
 ## Kaynakça
 
 Jensen, Theis Z. T., Jonas Niemann, Katrine Højholt Iversen, Anna K. Fotakis, Shyam Gopalakrishnan, Åshild J. Vågene, Mikkel Winther Pedersen, et al. “A 5700 Year-Old Human Genome and Oral Microbiome from Chewed Birch Pitch.” Nature Communications 10, no. 1 (December 17, 2019): 5520. https://doi.org/10.1038/s41467-019-13549-9.
