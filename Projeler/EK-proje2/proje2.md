@@ -48,4 +48,4 @@ Maliyet fonksiyonu (hata fonksiyonu): [site](https://www.kdnuggets.com/2020/05/5
 Aşamalı azalış hakında [site](https://analyticslearn.com/gradient-descent-derivation)
 Alex Baecher [site](https://www.alexbaecher.com/post/gradient-descent/)
 Aşamalı azalış matematiği [site](https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e)
-
+Aşamalı azalış matematiği ikinci [site](https://mccormickml.com/2014/03/04/gradient-descent-derivation/)
