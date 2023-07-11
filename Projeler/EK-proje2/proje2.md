@@ -102,9 +102,10 @@ ggplot(data = df, aes(y=y,x=x)) + geom_point() + geom_segment(aes(xend = x, yend
 
 ## Kaynak okumalar
 
-Maliyet fonksiyonu (hata fonksiyonu): [site](https://www.kdnuggets.com/2020/05/5-concepts-gradient-descent-cost-function.html)
+- Maliyet fonksiyonu (hata fonksiyonu): [site](https://www.kdnuggets.com/2020/05/5-concepts-gradient-descent-cost-function.html)
+- Aşamalı azalış hakında [site](https://analyticslearn.com/gradient-descent-derivation)
+- Alex Baecher [site](https://www.alexbaecher.com/post/gradient-descent/)
+- Aşamalı azalış matematiği [site](https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e)
+- Aşamalı azalış matematiği ikinci [site](https://mccormickml.com/2014/03/04/gradient-descent-derivation/)
+- Aşamalı azalış matematiği [video](https://www.youtube.com/watch?v=jc2IthslyzM)
 
-Aşamalı azalış hakında [site](https://analyticslearn.com/gradient-descent-derivation)
-Alex Baecher [site](https://www.alexbaecher.com/post/gradient-descent/)
-Aşamalı azalış matematiği [site](https://towardsdatascience.com/understanding-the-mathematics-behind-gradient-descent-dde5dc9be06e)
-Aşamalı azalış matematiği ikinci [site](https://mccormickml.com/2014/03/04/gradient-descent-derivation/)
