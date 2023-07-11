@@ -5,12 +5,30 @@ Bu proje kapsamında Jensen et al. 2019 makalesinde belirtilen 5700 yıllık ant
 Ardından, bu örnek içerisinde bulunan bazı bakterilere ait DNA dizlerini alarak, antk DNA onayalama süreçlerinden geçirerek, deaminasyon profillerini elde edeceğiz.
 
 
-## Proje adımları
+## Proje adımları
+
+İlk önce proje klasörünü oluşturalım:
+
+```bash
+mkdir sakiz
+mkdir -p sakiz/data
+mkdir -p sakiz/results
+
+cd sakiz
+```
+
+Şimdi de `${PATH}` değişkenini ayarlayayıp:
+
+```
+export PATH=/truba/home/egitim/miniconda3/envs/anmet4evogen/bin:${PATH}
+```
 
 Projede kullanılacak *fastq* okumalarını indirmek için aşağıdaki komutu kullanacağız:
 
 ```bash
+cd data 
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR325/004/ERR3250144/ERR3250144.fastq.gz
+cd ..
 ```
 
 Daha sonra, bu *fastq* dosyası içerisinde bulunan fastq okumalarını, Kraken2 (Wood and Salzberg, 2014) isimli araç yardımıyla sınıflandıracağız.
