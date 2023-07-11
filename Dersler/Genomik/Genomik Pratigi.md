@@ -179,7 +179,7 @@ Kullandigimiz yerlestirme teknikleri kisa dizileri dogru yerlerine her zaman cok
  Bu arada koda bakalim. Sonra da bitmis mi diye kontrol edelim.
 
 ```
-			cat samtools.sh
+			cat bcf.sh
 			sacct
 
  ```    
