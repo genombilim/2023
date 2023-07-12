@@ -135,14 +135,17 @@ merge_metaphlan_tables.py results/metaphlan/*txt > results/merged-table.txt
 Şimdi de sadece tür profillerini alalım:
 
 ```bash
-  grep -E "s__|clade" merged-table.txt | sed 's/^.*s__//g'\ | cut -f1,3-8 | sed -e 's/clade_name/body_site/g' > merged_abundance_table_species.txt
+  grep -E "s__|clade" results/merged-table.txt | sed 's/^.*s__//g'\ | cut -f1,3-8 | sed -e 's/clade_name/body_site/g' > results/merged_abundance_table_species.txt
 ```
 
 ## Isı haritası elde edelim
 
 ```bash
- hclust2.py -i merged_abundance_table_species.txt -o abundance_heatmap_species.png --f_dist_f braycurtis --s_dist_f braycurtis --cell_aspect_ratio 0.5 -l --flabel_size 10 --slabel_size 10 --max_flabel_len 100 --max_slabel_len 100 --minv 0.1 --dpi 300
-
+ hclust2.py -i results/merged_abundance_table_species.txt -o abundance_heatmap_species.png --f_dist_f braycurtis --s_dist_f braycurtis 
  ```
 
  Bir ısı haritası elde edebiliriz bu şekilde.
+
+ Eğer her şey doğru gittiyse aşağıdaki grafiği elde etmemiz gerekecek:
+
+ ![Isı haritası](abundance_heatmap_species.png)
