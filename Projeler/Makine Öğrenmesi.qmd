@@ -1,3 +1,12 @@
 Python Proje Defterleri
 
 https://colab.research.google.com/drive/1UMsW5pVnF2n1PONenCrxS3MjI7TU1-xZ?usp=sharing
+
+
+Makine Ogrenmesi videosu, ingilizce ama cok guzel anlatmis. https://youtu.be/R9OHn5ZF4Uo
+
+Bioenformatik Makine Ogrenmesi: 
+https://colab.research.google.com/drive/17E4h5aAOioh5DiTo7MZg4hpL6Z_0FyWr
+
+Kanser Gruplama:
+https://github.com/acg-team/Bioinfo4B/tree/main/Project
